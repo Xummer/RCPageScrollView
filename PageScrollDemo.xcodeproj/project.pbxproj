@@ -18,8 +18,8 @@
 		C181D3C717438E4A006DDFE6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C181D3C617438E4A006DDFE6 /* Default-568h@2x.png */; };
 		C181D3CA17438E4A006DDFE6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C181D3C917438E4A006DDFE6 /* ViewController.m */; };
 		C181D3CD17438E4A006DDFE6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C181D3CB17438E4A006DDFE6 /* ViewController.xib */; };
-		C1D68ED0174482690027CBA2 /* RCPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D68ECF174482690027CBA2 /* RCPageScrollView.m */; };
 		C1E6D0351745FD81000991C9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E6D0341745FD81000991C9 /* QuartzCore.framework */; };
+		C1FC5CE017462BA6002E4F95 /* RCPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FC5CDF17462BA6002E4F95 /* RCPageScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +39,9 @@
 		C181D3C817438E4A006DDFE6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C181D3C917438E4A006DDFE6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C181D3CC17438E4A006DDFE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		C1D68ECE174482690027CBA2 /* RCPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCPageScrollView.h; sourceTree = "<group>"; };
-		C1D68ECF174482690027CBA2 /* RCPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCPageScrollView.m; sourceTree = "<group>"; };
 		C1E6D0341745FD81000991C9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C1FC5CDE17462BA6002E4F95 /* RCPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCPageScrollView.h; sourceTree = "<group>"; };
+		C1FC5CDF17462BA6002E4F95 /* RCPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCPageScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +95,7 @@
 				C181D3C817438E4A006DDFE6 /* ViewController.h */,
 				C181D3C917438E4A006DDFE6 /* ViewController.m */,
 				C181D3CB17438E4A006DDFE6 /* ViewController.xib */,
-				C1D68ECE174482690027CBA2 /* RCPageScrollView.h */,
-				C1D68ECF174482690027CBA2 /* RCPageScrollView.m */,
+				C1FC5CDD17462BA6002E4F95 /* RCPageScrollView */,
 				C181D3B717438E4A006DDFE6 /* Supporting Files */,
 			);
 			path = PageScrollDemo;
@@ -114,6 +113,15 @@
 				C181D3C617438E4A006DDFE6 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C1FC5CDD17462BA6002E4F95 /* RCPageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				C1FC5CDE17462BA6002E4F95 /* RCPageScrollView.h */,
+				C1FC5CDF17462BA6002E4F95 /* RCPageScrollView.m */,
+			);
+			path = RCPageScrollView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,7 +193,7 @@
 				C181D3BD17438E4A006DDFE6 /* main.m in Sources */,
 				C181D3C117438E4A006DDFE6 /* AppDelegate.m in Sources */,
 				C181D3CA17438E4A006DDFE6 /* ViewController.m in Sources */,
-				C1D68ED0174482690027CBA2 /* RCPageScrollView.m in Sources */,
+				C1FC5CE017462BA6002E4F95 /* RCPageScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
