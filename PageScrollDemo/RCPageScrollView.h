@@ -44,7 +44,8 @@ typedef NS_ENUM(NSInteger, RCPageScrollViewDirection){
 - (id)initWithFrame:(CGRect)frame
          dataSource:(id<RCPageScrollViewDataSource>)pDataSource
        elementCount:(NSInteger)pElementCount
-          direction:(RCPageScrollViewDirection)pDirection;
+          direction:(RCPageScrollViewDirection)pDirection
+              cycle:(BOOL)pCycle;
 
 - (void)updateCurrentPage:(NSInteger)newCurrentPageNumber animation:(BOOL)animation;
 

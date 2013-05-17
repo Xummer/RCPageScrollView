@@ -17,6 +17,8 @@
     NSInteger   _cachedElementCount;
     NSInteger   _cacheStart;
     NSInteger   _cacheEnd;
+    NSInteger   _nomorlCount;
+    NSInteger   _cycle;
 }
 
 - (void)setupSubViews;
@@ -40,15 +42,22 @@
          dataSource:(id<RCPageScrollViewDataSource>)pDataSource
        elementCount:(NSInteger)pElementCount
           direction:(RCPageScrollViewDirection)pDirection
+              cycle:(BOOL)pCycle
 {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupSubViews];
         
         _scrollDirection = pDirection;
-                
-        [self setElementCount:pElementCount];
+        
+        _nomorlCount = pElementCount;
+        _cycle = pCycle;
+        [self setElementCount:pCycle?pElementCount+2:pElementCount];
         [self setDataSource:pDataSource];
+        
+        if (pCycle) {
+            [self setCurrentPage:1];
+        }
         
     }
     return self;
@@ -91,6 +100,21 @@
     if (_cacheStart < 0) {
         _cacheStart = 0;
     }
+}
+
+- (NSInteger)calculateNewIndex:(NSInteger)index
+{
+    NSInteger newIndex = index;
+    if (_cycle) {
+        if (newIndex == 0) {
+            newIndex = _elementCount - 3;
+        }else if (index == _elementCount -1) {
+            newIndex = 1;
+        }else{
+            newIndex -= 1;
+        }
+    }
+    return newIndex;
 }
 
 - (void)rearrangePages {
@@ -173,7 +197,7 @@
         recycledEntry.index = index;
         
         if ([_dataSource respondsToSelector:@selector(scrollView:updatePage:atIndex:)]) {
-            [_dataSource scrollView:_contentScrollView updatePage:recycledEntry.pageView atIndex:index];
+            [_dataSource scrollView:_contentScrollView updatePage:recycledEntry.pageView atIndex:[self calculateNewIndex:index]];
         }
         
         [_cachedPages addObject:recycledEntry];
@@ -183,7 +207,7 @@
         newEntry.index = index;
         
         if ([_dataSource respondsToSelector:@selector(scrollView:pageAtIndex:)]) {
-            newEntry.pageView = [_dataSource scrollView:_contentScrollView pageAtIndex:index];
+            newEntry.pageView = [_dataSource scrollView:_contentScrollView pageAtIndex:[self calculateNewIndex:index]];
         }
         
         [_cachedPages addObject:newEntry];
@@ -276,5 +300,24 @@
     }
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (_cycle) {
+        if (_currentPage == 0) {
+            [self setCurrentPage:_elementCount - 2];
+//            [scrollView setContentOffset:CGPointMake((_elementCount - 2)*scrollView.bounds.size.width, 0)];
+            NSLog(@"000");
+        }else if (_currentPage == _elementCount - 1) {
+            [self setCurrentPage:1];
+//            [scrollView setContentOffset:CGPointMake(scrollView.bounds.size.width, 0)];
+            NSLog(@"n-2");
+        }
+    }
+    
+    if ([_scrollViewDelegate conformsToProtocol:@protocol(UIScrollViewDelegate)] &&
+        [_scrollViewDelegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        [(id<UIScrollViewDelegate>)_scrollViewDelegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
 
 @end

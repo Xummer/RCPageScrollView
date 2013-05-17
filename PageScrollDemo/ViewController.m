@@ -44,9 +44,7 @@
         [_dataArray addObject:[NSString stringWithFormat:@"%d", i]];
     }
     
-    
-    
-    RCPageScrollView *scroll = [[RCPageScrollView alloc] initWithFrame:self.view.bounds dataSource:self elementCount:[_dataArray count] direction:kPageScrollVertical];
+    RCPageScrollView *scroll = [[RCPageScrollView alloc] initWithFrame:self.view.bounds dataSource:self elementCount:[_dataArray count] direction:kPageScrollVertical cycle:NO];
     [self setPageScroll:scroll];
     [self.view addSubview:scroll];
 }
@@ -61,7 +59,9 @@
 //generate the page at specified index
 - (UIView*)scrollView:(UIScrollView*)scrollView pageAtIndex:(NSInteger)index
 {
-    CGRect frame = CGRectInset(self.view.bounds, 10+index, 10+index);
+    //    CGRect frame = CGRectInset(self.view.bounds, 10+index, 10+index);
+    //    CGRect frame = self.view.bounds;
+    CGRect frame = CGRectInset(self.view.bounds, 10, 10);
     UIView *newPage = [[UIView alloc] initWithFrame:frame];
     [newPage.layer setCornerRadius:3.0f];
     [newPage setClipsToBounds:YES];
@@ -89,7 +89,9 @@
 //update the page at specified index
 - (void)scrollView:(UIScrollView *)scrollView updatePage:(UIView *)page atIndex:(NSInteger)index
 {
-    CGRect frame = CGRectInset(self.view.bounds, 10+index, 10+index);
+    //    CGRect frame = CGRectInset(self.view.bounds, 10+index, 10+index);
+    //    CGRect frame = self.view.bounds;
+    CGRect frame = CGRectInset(self.view.bounds, 10, 10);
     [page setFrame:frame];
     
     UIView *subview = [page viewWithTag:26];
