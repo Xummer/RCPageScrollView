@@ -204,7 +204,12 @@
             [_dataSource scrollView:_contentScrollView updatePage:recycledEntry.pageView atIndex:[self calculateNewIndex:index]];
         }
         
-        [_cachedPages addObject:recycledEntry];
+        if (index < ((RCPageEntry *)[_cachedPages firstObject]).index) {
+            [_cachedPages insertObject:recycledEntry atIndex:0];
+        }
+        else {
+            [_cachedPages addObject:recycledEntry];
+        }
         [recycledPages removeLastObject];
     }
     else if ([_cachedPages count] < _cachedElementCount) {
@@ -215,7 +220,12 @@
             newEntry.pageView = [_dataSource scrollView:_contentScrollView pageAtIndex:[self calculateNewIndex:index]];
         }
         
-        [_cachedPages addObject:newEntry];
+        if (index < ((RCPageEntry *)[_cachedPages firstObject]).index) {
+            [_cachedPages insertObject:newEntry atIndex:0];
+        }
+        else {
+            [_cachedPages addObject:newEntry];
+        }
     }
     
 }
