@@ -10,6 +10,10 @@
 
 @implementation RCPageEntry
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"pageView:%@, index:%d, reuse:%hhd ", _pageView, _index, _reused];
+}
+
 @end
 
 @interface RCPageScrollView ()
@@ -202,7 +206,8 @@
         
         [_cachedPages addObject:recycledEntry];
         [recycledPages removeLastObject];
-    }else{
+    }
+    else if ([_cachedPages count] < _cachedElementCount) {
         RCPageEntry *newEntry = [[RCPageEntry alloc] init];
         newEntry.index = index;
         
@@ -217,12 +222,14 @@
 
 - (void)updateCurrentPage:(NSInteger)newCurrentPageNumber animation:(BOOL)animation
 {
-    if (newCurrentPageNumber >= _elementCount || newCurrentPageNumber < 0) return;
+    if (newCurrentPageNumber >= _elementCount || newCurrentPageNumber < 0)
+        return;
     if (_scrollDirection == kPageScrollHorizontal) {
         CGFloat pageWidth = _contentScrollView.bounds.size.width;
         [_contentScrollView setContentOffset:CGPointMake(newCurrentPageNumber * pageWidth, _contentScrollView.contentOffset.y) animated:animation];
         
-    } else {
+    }
+    else {
         CGFloat pageHeight = _contentScrollView.bounds.size.height;
         [_contentScrollView setContentOffset:CGPointMake(_contentScrollView.contentOffset.x, newCurrentPageNumber * pageHeight) animated:animation];
     }
@@ -234,8 +241,8 @@
 - (void)setElementCount:(NSInteger)elementCount {
     _elementCount = elementCount;
     [_contentScrollView setContentSize:_scrollDirection == kPageScrollHorizontal
-                                      ?CGSizeMake(_elementCount*_contentScrollView.bounds.size.width, _contentScrollView.bounds.size.height)
-                                      :CGSizeMake(_contentScrollView.bounds.size.width, _elementCount*_contentScrollView.bounds.size.height)];
+                                      ?CGSizeMake(_elementCount*CGRectGetWidth(_contentScrollView.bounds), CGRectGetHeight(_contentScrollView.bounds))
+                                      :CGSizeMake(CGRectGetWidth(_contentScrollView.bounds), _elementCount*CGRectGetHeight(_contentScrollView.bounds))];
 }
 
 - (void)setCurrentPage:(NSInteger)currentPage {
@@ -306,11 +313,11 @@
         if (_currentPage == 0) {
             [self setCurrentPage:_elementCount - 2];
 //            [scrollView setContentOffset:CGPointMake((_elementCount - 2)*scrollView.bounds.size.width, 0)];
-            NSLog(@"000");
+//            NSLog(@"000");
         }else if (_currentPage == _elementCount - 1) {
             [self setCurrentPage:1];
 //            [scrollView setContentOffset:CGPointMake(scrollView.bounds.size.width, 0)];
-            NSLog(@"n-2");
+//            NSLog(@"n-2");
         }
     }
     
