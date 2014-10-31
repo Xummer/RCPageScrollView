@@ -38,20 +38,34 @@
 
 - (void)setupPageScrollView
 {    
-    [self setDataArray:[[NSMutableArray alloc] init]];
-    
-    for (int i = 0; i < 26; i++) {
-        [_dataArray addObject:[NSString stringWithFormat:@"%d", i]];
-    }
+    [self randomDataArray];
     
     RCPageScrollView *scroll = [[RCPageScrollView alloc] initWithFrame:self.view.bounds dataSource:self elementCount:[_dataArray count] direction:kPageScrollVertical cycle:NO];
-    [self setPageScroll:scroll];
+    self.pageScroll = scroll;
     [self.view addSubview:scroll];
 }
 
 - (IBAction)buttonAction:(id)sender
 {
-    [_pageScroll setCurrentPage:--_pageScroll.currentPage];
+    [self randomDataArray];
+    [self.pageScroll reloadData];
+//    [_pageScroll setCurrentPage:--_pageScroll.currentPage];
+}
+
+- (void)randomDataArray {
+    
+    NSMutableArray *mArr = [NSMutableArray array];
+    
+    int iRandomBase = arc4random() % 100;
+    
+    int iRandomCount = arc4random() % 26 + 1;
+    
+    
+    for (int i = 0; i < iRandomCount; i++) {
+        [mArr addObject:[NSString stringWithFormat:@"%d", i + iRandomBase]];
+    }
+    
+    self.dataArray = mArr;
 }
 
 #pragma mark - 
@@ -98,6 +112,10 @@
     if (subview && [subview isKindOfClass:[UILabel class]]) {
         [(UILabel *)subview setText:_dataArray[index]];
     }
+}
+
+- (NSUInteger)numberOfPagesInScrollView:(UIScrollView*)scrollView {
+    return [_dataArray count];
 }
 
 @end

@@ -247,6 +247,30 @@
     [self scrollViewDidScroll:_contentScrollView];
 }
 
+- (void)reloadData {
+    
+    if ([_dataSource respondsToSelector:@selector(numberOfPagesInScrollView:)]) {
+        [self setElementCount:[_dataSource numberOfPagesInScrollView:_contentScrollView]];
+        
+        if (_currentPage >= _elementCount) {
+            self.currentPage = _cycle ? 1 : 0;
+        }
+        
+    }
+    else {
+        self.currentPage = _cycle ? 1 : 0;
+    }
+    
+    for (RCPageEntry *entry in _cachedPages) {
+        [entry.pageView removeFromSuperview];
+    }    
+    
+    [_cachedPages removeAllObjects];
+    
+    [self rearrangePages];
+    
+}
+
 #pragma mark - Setters
 - (void)setElementCount:(NSInteger)elementCount {
     _elementCount = elementCount;
