@@ -152,6 +152,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Xummer;
+				TargetAttributes = {
+					C181D3AC17438E4A006DDFE6 = {
+						DevelopmentTeam = 3YNA7CJZEF;
+					};
+				};
 			};
 			buildConfigurationList = C181D3A817438E4A006DDFE6 /* Build configuration list for PBXProject "PageScrollDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -278,10 +283,11 @@
 		C181D3D117438E4A006DDFE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 3YNA7CJZEF;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PageScrollDemo/PageScrollDemo-Prefix.pch";
 				INFOPLIST_FILE = "PageScrollDemo/PageScrollDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -290,10 +296,11 @@
 		C181D3D217438E4A006DDFE6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 3YNA7CJZEF;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PageScrollDemo/PageScrollDemo-Prefix.pch";
 				INFOPLIST_FILE = "PageScrollDemo/PageScrollDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

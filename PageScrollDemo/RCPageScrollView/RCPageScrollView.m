@@ -113,7 +113,7 @@
         if (newIndex == 0) {
             newIndex = _elementCount - 3;
         }else if (index == _elementCount -1) {
-            newIndex = 1;
+            newIndex = 0;
         }else{
             newIndex -= 1;
         }

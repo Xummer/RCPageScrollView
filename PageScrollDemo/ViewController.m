@@ -40,7 +40,7 @@
 {    
     [self randomDataArray];
     
-    RCPageScrollView *scroll = [[RCPageScrollView alloc] initWithFrame:self.view.bounds dataSource:self elementCount:[_dataArray count] direction:kPageScrollVertical cycle:NO];
+    RCPageScrollView *scroll = [[RCPageScrollView alloc] initWithFrame:self.view.bounds dataSource:self elementCount:[_dataArray count] direction:kPageScrollVertical cycle:YES];
     self.pageScroll = scroll;
     [self.view addSubview:scroll];
 }
